@@ -1,0 +1,25 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/src/",
+                "/usr/include",
+                "/usr/local/include",
+                "/usr/include/linux/",
+                "/home/home/workspace/xuexi/coreutils/**"
+            ],
+            "browse": {
+                "path": ["${workspaceFolder}/src/"],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            },
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "linux-gcc-x64"
+        }
+    ],
+    "version": 4
+}

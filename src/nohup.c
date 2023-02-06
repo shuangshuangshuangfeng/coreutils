@@ -1,16 +1,13 @@
 /* nohup -- run a command immune to hangups, with output to a non-tty
    Copyright (C) 2003-2023 Free Software Foundation, Inc.
-
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
    the Free Software Foundation, either version 3 of the License, or
    (at your option) any later version.
-
    This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
    GNU General Public License for more details.
-
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
 
@@ -87,7 +84,7 @@ main (int argc, char **argv)
   initialize_main (&argc, &argv);
   set_program_name (argv[0]);
   setlocale (LC_ALL, "");
-  bindtextdomain (PACKAGE, LOCALEDIR);
+  bindtextdomain (PACKAGE, LOCALEDIR); // 绑定文本域
   textdomain (PACKAGE);
 
   /* POSIX 2008 requires that internal failure give status 127; unlike
@@ -135,13 +132,13 @@ main (int argc, char **argv)
       char *in_home = NULL;
       char const *file = "nohup.out";
       int flags = O_CREAT | O_WRONLY | O_APPEND;
-      mode_t mode = S_IRUSR | S_IWUSR;
-      mode_t umask_value = umask (~mode);
+      mode_t mode = S_IRUSR | S_IWUSR; 
+      mode_t umask_value = umask (~mode); //  权限掩码
       out_fd = (redirecting_stdout
                 ? fd_reopen (STDOUT_FILENO, file, flags, mode)
-                : open (file, flags, mode));
+                : open (file, flags, mode)); // 输出文件位置
 
-      if (out_fd < 0)
+      if (out_fd < 0) // 如果无输出文件
         {
           int saved_errno = errno;
           char const *home = getenv ("HOME");
@@ -164,7 +161,7 @@ main (int argc, char **argv)
           file = in_home;
         }
 
-      umask (umask_value);
+      umask (umask_value); // 设置权限
       error (0, 0,
              _(ignoring_input
                ? N_("ignoring input and appending output to %s")
@@ -179,7 +176,9 @@ main (int argc, char **argv)
       /* Save a copy of stderr before redirecting, so we can use the original
          if execve fails.  It's no big deal if this dup fails.  It might
          not change anything, and at worst, it'll lead to suppression of
-         the post-failed-execve diagnostic.  */
+         the post-failed-execve diagnostic.  
+         复制一份重定向前的标准错误输出文件符。
+         */
       saved_stderr_fd = fcntl (STDERR_FILENO, F_DUPFD_CLOEXEC,
                                STDERR_FILENO + 1);
 
@@ -189,6 +188,7 @@ main (int argc, char **argv)
                  ? N_("ignoring input and redirecting stderr to stdout")
                  : N_("redirecting stderr to stdout")));
 
+      // 复制一份输出的文件描述符
       if (dup2 (out_fd, STDERR_FILENO) < 0)
         error (exit_internal_failure, errno,
                _("failed to redirect standard error"));
@@ -206,10 +206,10 @@ main (int argc, char **argv)
   if (ferror (stderr))
     return exit_internal_failure;
 
-  signal (SIGHUP, SIG_IGN);
+  signal (SIGHUP, SIG_IGN); // 忽略SIGHUP信号（父进程推出而不影响子进程）， 捕获SIG_IGN信号
 
   char **cmd = argv + optind;
-  execvp (*cmd, cmd);
+  execvp (*cmd, cmd); // 在PATH环境变量中查找文件，并执行该文件
   int exit_status = errno == ENOENT ? EXIT_ENOENT : EXIT_CANNOT_INVOKE;
   int saved_errno = errno;
 

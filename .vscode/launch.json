@@ -1,0 +1,33 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "coreutil-src",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/home/home/workspace/xuexi/coreutils/install_output/bin/nohup", //要运行的目标程序
+            "args": ["idea.sh"],
+            "stopAtEntry": true,
+            "cwd": "${workspaceFolder}/src/", // 鼠标放上去有惊喜,目标的工作目录
+            "environment": [ //配置环境变量
+                // {
+                //     "name": "CLASSPATH",
+                //     "value": "/home/tina/workspace/stepbystep/LeetCode/HelloWorld/out/production"
+                // },
+            ],
+            "setupCommands": [
+                {
+                    "text": "handle SIGSEGV pass noprint nostop", 
+                    "description": "ignore SIGSEGV", 
+                    "ignoreFailures": true 
+                }
+            ],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            // "preLaunchTask": "jdk11s-build"  //运行编译任务
+        }
+    ]
+}

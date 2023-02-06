@@ -1,0 +1,27 @@
+
+  ============================================================================  
+
+    ja-netfilter 2022.2.0
+
+    A javaagent framework :)
+
+    https://github.com/ja-netfilter/ja-netfilter
+
+  ============================================================================  
+
+Info  | RdCoroutineScope          | 32:JobScheduler FJ pool 8/19 | RdCoroutineHost overridden 
+2023-02-06 13:32:40,177 [   5581]   WARN - #c.i.o.a.i.ActionUpdater - 485 ms to grab EDT for CWMTelephonyGroup#update@NavBarToolbar (com.jetbrains.rd.platform.codeWithMe.telephony.CWMTelephonyGroup)
+
+  ============================================================================  
+
+    ja-netfilter 2022.2.0
+
+    A javaagent framework :)
+
+    https://github.com/ja-netfilter/ja-netfilter
+
+  ============================================================================  
+
+Info  | RdCoroutineScope          | 30:JobScheduler FJ pool 6/19 | RdCoroutineHost overridden 
+2023-02-06 14:09:41,482 [   7662]   WARN - #c.i.u.x.Binding - no accessors for org.jetbrains.idea.perforce.perforce.ConnectionId
+java.io.InterruptedIOException

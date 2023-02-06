@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "fd-reopen.h": "c",
+        "types.h": "c",
+        "xdectoint.h": "c",
+        "system.h": "c",
+        "alloca.h": "c",
+        "error.h": "c",
+        "signal.h": "c"
+    }
+}
